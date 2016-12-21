@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ce5d873a9d93dd993543cf1bebd20056",
+    "hash": "31223e3dea6523cfe9a8868d82f8ec3a",
     "content-hash": "a8f59abc57e054a98cf2a87db65683da",
     "packages": [
         {
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bomcms/adminlte.git",
-                "reference": "5894488c76606b8e6a3ae04ecf858540242298bb"
+                "reference": "f8c92ccfa5c44f06bd9a95ed0ae3c56ebbfe3ccf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bomcms/adminlte/zipball/5894488c76606b8e6a3ae04ecf858540242298bb",
-                "reference": "5894488c76606b8e6a3ae04ecf858540242298bb",
+                "url": "https://api.github.com/repos/bomcms/adminlte/zipball/f8c92ccfa5c44f06bd9a95ed0ae3c56ebbfe3ccf",
+                "reference": "f8c92ccfa5c44f06bd9a95ed0ae3c56ebbfe3ccf",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "AdminLTE backend theme",
-            "time": "2016-12-17 18:10:59"
+            "time": "2016-12-20 16:05:37"
         },
         {
             "name": "bower-asset/bootstrap",

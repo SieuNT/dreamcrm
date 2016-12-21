@@ -39,36 +39,27 @@ AppAsset::register($this);
                         [
                             'label' => 'Dự án',
                             'url' => ['product/index'],
-//                            'items' => [
-//                                [
-//                                    'label' => 'Danh sách dự án',
-//                                    'url' => ['product/index']
-//                                ],
-//                                [
-//                                    'label' => 'Most Popular',
-//                                    'url' => ['product/index']
-//                                ],
-//                            ]
+                            'icon' => 'fa fa-cubes',
                         ],
                         [
                             'label' => 'Đối tác',
                             'url' => ['site/index'],
-                            'icon' => 'fa fa-home'
+                            'icon' => 'fa fa-handshake-o'
                         ],
                         [
                             'label' => 'Khách hàng',
                             'url' => ['site/index'],
-                            'icon' => 'fa fa-home'
+                            'icon' => 'fa fa-address-book'
                         ],
                         [
                             'label' => 'Nhân viên',
                             'url' => ['site/index'],
-                            'icon' => 'fa fa-home'
+                            'icon' => 'fa fa-users'
                         ],
                         [
                             'label' => 'Thông tin tài khoản',
                             'url' => ['site/index'],
-                            'icon' => 'fa fa-home'
+                            'icon' => 'fa fa-user-circle-o'
                         ],
                         [
                             'label' => 'Thoát',
@@ -89,8 +80,8 @@ AppAsset::register($this);
             </section>
         </div>
         <footer class="main-footer">
-            <p class="pull-right hidden-xs"><?= Yii::powered() ?></p>
-            &copy; My Company <?= date('Y') ?>
+            <p class="pull-right hidden-xs">Power by BaseCMS 1.0</p>
+            &copy; Dream CRM 2004 - <?= date('Y') ?>
         </footer>
     </div>
     <?php $this->endBody() ?>
