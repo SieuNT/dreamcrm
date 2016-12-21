@@ -38,27 +38,27 @@ AppAsset::register($this);
                         ],
                         [
                             'label' => 'Dự án',
-                            'url' => ['product/index'],
+                            'url' => ['project/index'],
                             'icon' => 'fa fa-cubes',
                         ],
                         [
                             'label' => 'Đối tác',
-                            'url' => ['site/index'],
+                            'url' => ['partner/index'],
                             'icon' => 'fa fa-handshake-o'
                         ],
                         [
                             'label' => 'Khách hàng',
-                            'url' => ['site/index'],
+                            'url' => ['customer/index'],
                             'icon' => 'fa fa-address-book'
                         ],
                         [
                             'label' => 'Nhân viên',
-                            'url' => ['site/index'],
+                            'url' => ['user/index'],
                             'icon' => 'fa fa-users'
                         ],
                         [
                             'label' => 'Thông tin tài khoản',
-                            'url' => ['site/index'],
+                            'url' => ['user/me'],
                             'icon' => 'fa fa-user-circle-o'
                         ],
                         [
