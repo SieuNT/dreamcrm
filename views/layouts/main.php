@@ -49,7 +49,17 @@ AppAsset::register($this);
                         [
                             'label' => 'Khách hàng',
                             'url' => ['customer/index'],
-                            'icon' => 'fa fa-address-book'
+                            'icon' => 'fa fa-address-book',
+                            'items' => [
+                                [
+                                    'label' => 'Khách hàng',
+                                    'url' => ['customer/index']
+                                ],
+                                [
+                                    'label' => 'Nguồn khách hàng',
+                                    'url' => ['customer-resource/index']
+                                ],
+                            ],
                         ],
                         [
                             'label' => 'Nhân viên',
