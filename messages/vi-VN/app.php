@@ -56,7 +56,7 @@ return [
     'Status' => '',
     'Thêm mới dự án' => '',
     'Title' => 'Tiêu đề',
-    'Update' => '',
+    'Update' => 'Cập nhật',
     'Update {modelClass}: ' => '',
     'Updated At' => '',
     'Updated By' => '',
