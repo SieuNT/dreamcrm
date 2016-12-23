@@ -16,6 +16,7 @@ class m161221_131301_customers extends Migration
             'id' => $this->primaryKey(),
             'project_id' => $this->integer(),
             'partner_id' => $this->integer(),
+            'customer_resource_id' => $this->integer()->null(),
             'full_name' => $this->string()->notNull(),
             'phone_number' => $this->string()->notNull(),
             'email' => $this->string()->notNull(),
@@ -30,6 +31,7 @@ class m161221_131301_customers extends Migration
 
         $this->addForeignKey('fk_customer_project', '{{%customer}}', 'project_id', '{{%project}}', 'id');
         $this->addForeignKey('fk_customer_partner', '{{%customer}}', 'partner_id', '{{%partner}}', 'id');
+        $this->addForeignKey('fk_customer_customer_resource', '{{%customer}}', 'customer_resource_id', '{{%customer_resource}}', 'id');
     }
 
     public function down()

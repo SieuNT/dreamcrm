@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'partner_id')->textInput() ?>
 
+    <?= $form->field($model, 'customer_resource_id')->textInput() ?>
+
     <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>

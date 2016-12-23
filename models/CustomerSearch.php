@@ -18,7 +18,7 @@ class CustomerSearch extends Customer
     public function rules()
     {
         return [
-            [['id', 'project_id', 'partner_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'project_id', 'partner_id', 'customer_resource_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['full_name', 'phone_number', 'email', 'delivery_date'], 'safe'],
         ];
     }
@@ -62,6 +62,7 @@ class CustomerSearch extends Customer
             'id' => $this->id,
             'project_id' => $this->project_id,
             'partner_id' => $this->partner_id,
+            'customer_resource_id' => $this->customer_resource_id,
             'delivery_date' => $this->delivery_date,
             'status' => $this->status,
             'created_by' => $this->created_by,

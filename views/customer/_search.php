@@ -21,9 +21,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'partner_id') ?>
 
+    <?= $form->field($model, 'customer_resource_id') ?>
+
     <?= $form->field($model, 'full_name') ?>
 
-    <?= $form->field($model, 'phone_number') ?>
+    <?php // echo $form->field($model, 'phone_number') ?>
 
     <?php // echo $form->field($model, 'email') ?>
 

@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'project_id',
             'partner_id',
+            'customer_resource_id',
             'full_name',
             'phone_number',
             'email:email',

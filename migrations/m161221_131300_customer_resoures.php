@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m161222_121858_customer_resoures extends Migration
+class m161221_131300_customer_resoures extends Migration
 {
     public function up()
     {
@@ -14,18 +14,14 @@ class m161222_121858_customer_resoures extends Migration
 
         $this->createTable('{{%customer_resource}}', [
             'id' => $this->primaryKey(),
-            'customer_id' => $this->integer(),
             'name' => $this->integer(),
             'content' => $this->text()->comment('Nội dung'),
-
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_by' => $this->integer()->notNull(),
             'updated_by' => $this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ], $tableOptions);
-
-        $this->addForeignKey('fk_customer_customer_resource', '{{%customer_resource}}', 'customer_id', '{{%customer}}', 'id');
     }
 
     public function down()

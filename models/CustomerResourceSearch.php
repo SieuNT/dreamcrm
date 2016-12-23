@@ -18,7 +18,7 @@ class CustomerResourceSearch extends CustomerResource
     public function rules()
     {
         return [
-            [['id', 'customer_id', 'name', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'name', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['content'], 'safe'],
         ];
     }
@@ -60,7 +60,6 @@ class CustomerResourceSearch extends CustomerResource
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'customer_id' => $this->customer_id,
             'name' => $this->name,
             'status' => $this->status,
             'created_by' => $this->created_by,

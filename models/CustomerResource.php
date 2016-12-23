@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "customer_resource".
  *
  * @property integer $id
- * @property integer $customer_id
  * @property integer $name
  * @property string $content
  * @property integer $status
@@ -17,7 +16,7 @@ use Yii;
  * @property integer $created_at
  * @property integer $updated_at
  *
- * @property Customer $customer
+ * @property Customer[] $customers
  */
 class CustomerResource extends \yii\db\ActiveRecord
 {
@@ -35,10 +34,9 @@ class CustomerResource extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['customer_id', 'name', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['content'], 'string'],
             [['created_by', 'updated_by', 'created_at', 'updated_at'], 'required'],
-            [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['customer_id' => 'id']],
         ];
     }
 
@@ -49,7 +47,6 @@ class CustomerResource extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'customer_id' => Yii::t('app', 'Customer ID'),
             'name' => Yii::t('app', 'Name'),
             'content' => Yii::t('app', 'Content'),
             'status' => Yii::t('app', 'Status'),
@@ -63,9 +60,9 @@ class CustomerResource extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCustomer()
+    public function getCustomers()
     {
-        return $this->hasOne(Customer::className(), ['id' => 'customer_id']);
+        return $this->hasMany(Customer::className(), ['customer_resource_id' => 'id']);
     }
 
     /**

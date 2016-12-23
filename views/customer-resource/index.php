@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CustomerResourceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,18 +18,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Create Customer Resource'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+<?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'customer_id',
             'name',
             'content:ntext',
             'status',
-            // 'created_by',
+            'created_by',
             // 'updated_by',
             // 'created_at',
             // 'updated_at',
@@ -37,4 +36,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-</div>
+<?php Pjax::end(); ?></div>
