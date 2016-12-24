@@ -64,9 +64,10 @@ class PartnerController extends Controller
     public function actionCreate()
     {
         $model = new Partner();
-
+        $model->start_date = date('d-m-Y');
+        $model->end_date = date('d-m-Y', strtotime('30 days'));
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('index');
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -85,7 +86,7 @@ class PartnerController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('index');
         } else {
             return $this->render('update', [
                 'model' => $model,

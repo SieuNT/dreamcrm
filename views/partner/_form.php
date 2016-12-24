@@ -1,6 +1,9 @@
 <?php
 
+use kartik\daterange\DateRangePicker;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use app\models\Project;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -12,29 +15,41 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'project_id')->textInput() ?>
+    <?= $form->field($model, 'project_id')->dropDownList(
+        ArrayHelper::map(Project::find()->all(), 'id', 'title'),
+        ['prompt' => '---Chọn dự án---'])->label('Dự Án') ?>
 
     <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <div class="form-group">
+        <label for="contract_date">Thời hạn hợp đồng</label>
+    <div class="input-group drp-container">
+        <?php
+        echo DateRangePicker::widget([
+            'model' => $model,
+            'attribute' => 'contract_date',
+            'useWithAddon' => true,
+            'convertFormat' => true,
+            'startAttribute' => 'start_date',
+            'endAttribute' => 'end_date',
+            'pluginOptions' => [
+                'opens' => 'right',
+                'locale' => [
+                    'format' => 'd-m-Y'
+                ],
+            ]
+        ]);
 
-    <?= $form->field($model, 'start_date')->textInput() ?>
-
-    <?= $form->field($model, 'end_date')->textInput() ?>
-
+        ?>
+        <span class="input-group-addon">
+            <i class="glyphicon glyphicon-calendar"></i>
+        </span>
+    </div>
+    </div>
     <?= $form->field($model, 'notes')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -60,6 +60,14 @@ $config = [
                 ],
             ],
         ],
+        'formatter' => [
+            'dateFormat' => 'php:d-m-Y',
+            'datetimeFormat' => 'php:d-M-Y H:i:s',
+            'timeFormat' => 'php:H:i:s',
+            'currencyCode' => 'VNĐ',
+            'locale' => 'vi-VN',
+            'defaultTimeZone' => 'Asia/Ho_Chi_Minh',
+        ],
     ],
     'params' => $params,
 ];

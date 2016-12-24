@@ -10,12 +10,12 @@ $this->title = Yii::t('app', 'Create Partner');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Partners'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="partner-create">
-
+<div class="box box-success partner-create">
+    <div class="box-body">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
+    </div>
 </div>
