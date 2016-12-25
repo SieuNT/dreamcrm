@@ -14,7 +14,7 @@ class m161221_131300_customer_resoures extends Migration
 
         $this->createTable('{{%customer_resource}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->integer(),
+            'name' => $this->string(),
             'content' => $this->text()->comment('Nội dung'),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_by' => $this->integer()->notNull(),

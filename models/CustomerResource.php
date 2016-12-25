@@ -22,6 +22,8 @@ use yii\behaviors\TimestampBehavior;
  */
 class CustomerResource extends \yii\db\ActiveRecord
 {
+    const STATUS_DEACTIVATE = 0;
+    const STATUS_ACTIVE = 10;
     /**
      * @inheritdoc
      */
@@ -44,9 +46,10 @@ class CustomerResource extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
-            [['content'], 'string'],
-            [['created_by', 'updated_by', 'created_at', 'updated_at'], 'required'],
+            [['status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'content'], 'string'],
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DEACTIVATE]],
         ];
     }
 
