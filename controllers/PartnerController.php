@@ -108,6 +108,22 @@ class PartnerController extends Controller
     }
 
     /**
+     * @param $id
+     */
+    public function actionLists($id){
+        $model = Partner::find()->where(['project_id' => $id]);
+        $countPartner = $model->count();
+        $partners      = $model->all();
+        if(count($countPartner) > 0){
+            foreach ($partners as $partner) {
+                echo "<option value='" . $partner->id . "'>" . $partner->full_name . "</option>";
+            }
+        }else{
+            echo "<option>-</option>";
+        }
+    }
+
+    /**
      * Finds the Partner model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id

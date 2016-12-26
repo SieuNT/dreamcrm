@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
 
 /**

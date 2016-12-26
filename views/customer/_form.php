@@ -1,5 +1,10 @@
 <?php
 
+use app\models\CustomerResource;
+use app\models\Partner;
+use app\models\Project;
+use kartik\daterange\DateRangePicker;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,11 +17,25 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'project_id')->textInput() ?>
+    <?= $form->field($model, 'project_id')->dropDownList(
+        ArrayHelper::map(Project::find()->all(), 'id', 'title'),
+        [
+            'prompt' => '---Chọn dự án---',
+            'onchange' => '$.post("/partner/lists/?id=' . '"+$(this).val(), function(data) {
+                $("select#models-partner").html(data);
+            });'
+        ])->label('Dự Án') ?>
 
-    <?= $form->field($model, 'partner_id')->textInput() ?>
+    <?= $form->field($model, 'partner_id')->dropDownList(
+        ArrayHelper::map(Partner::find()->all(), 'id', 'full_name'),
+        [
+            'prompt' => '---Chọn đối tác---',
+            'id' => 'models-partner'
+        ])->label('Đối tác') ?>
 
-    <?= $form->field($model, 'customer_resource_id')->textInput() ?>
+    <?= $form->field($model, 'customer_resource_id')->dropDownList(
+        ArrayHelper::map(CustomerResource::find()->all(), 'id', 'name'),
+        ['prompt' => '---Chọn nguồn khách hàng---'])->label('Nguồn khách hàng') ?>
 
     <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
@@ -24,17 +43,28 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'delivery_date')->textInput() ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <div class="form-group">
+        <label for="contract_date">Ngày giao khách</label>
+        <div class="input-group drp-container">
+            <?= DateRangePicker::widget([
+                'model' => $model,
+                'attribute' => 'delivery_date',
+                'useWithAddon' => true,
+                'convertFormat' => true,
+                'pluginOptions' => [
+                    'opens' => 'right',
+                    'timePicker' => false,
+                    'locale' => ['format' => 'd-m-Y'],
+                    'singleDatePicker' => true,
+                    'showDropdowns' => true,
+                    'readonly' => true
+                ],
+            ]) ?>
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-calendar"></i>
+            </span>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
