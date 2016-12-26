@@ -19,13 +19,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <p>
             <?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-success']) ?>
         </p>
-        <?php Pjax::begin(); ?>    <?= GridView::widget([
+        <?php Pjax::begin(); ?>
+        <?= GridView::widget([
             'dataProvider' => $dataProvider,
 //            'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
 
-//                'id',
                 'full_name',
                 'phone_number',
                 'email:email',
@@ -33,14 +33,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 'start_date:date',
                 'end_date:date',
-                // 'notes:ntext',
-                // 'status',
-                // 'created_by',
-                // 'updated_by',
-                // 'created_at',
-                // 'updated_at',
 
-                ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}'],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'buttons' => [
+                        'assign-user' => function ($url, $model, $key) {
+                            return Html::a('<i class="fa fa-user-o" aria-hidden="true"></i>', [$url]);
+                        },
+                    ],
+                    'template' => '{assign-user} {update} {delete}'
+                ],
             ],
         ]); ?>
         <?php Pjax::end(); ?>

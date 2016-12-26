@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\UserPartner;
 use Yii;
 use app\models\Partner;
 use app\models\PartnerSearch;
@@ -120,6 +121,21 @@ class PartnerController extends Controller
             }
         }else{
             echo "<option>-</option>";
+        }
+    }
+
+    /**
+     * Assign partner for user manager
+     */
+    public function actionAssignUser($id) {
+        $model = new UserPartner();
+        $model->partner_id = $id;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('assign-user', [
+                'model' => $model
+            ]);
         }
     }
 

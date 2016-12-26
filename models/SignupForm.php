@@ -1,7 +1,9 @@
 <?php
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * Signup form
@@ -15,6 +17,13 @@ class SignupForm extends Model
     public $full_name;
     public $phone_number;
     public $role;
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -41,6 +50,24 @@ class SignupForm extends Model
 
             ['role', 'default', 'value' => User::ROLE_USER],
             ['role', 'in', 'range' => [User::ROLE_USER, User::ROLE_ADMIN]],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('app', 'Username'),
+            'password_hash' => Yii::t('app', 'Password Hash'),
+            'email' => Yii::t('app', 'Email'),
+            'full_name' => Yii::t('app', 'Full Name'),
+            'phone_number' => Yii::t('app', 'Phone Number'),
+            'role' => Yii::t('app', 'Role'),
+            'status' => Yii::t('app', 'Status'),
+            'password' => Yii::t('app', 'Password'),
+            'password_confirm' => Yii::t('app', 'Password Confirm'),
         ];
     }
 

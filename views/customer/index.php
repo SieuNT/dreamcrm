@@ -26,6 +26,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
                 [
+                    'attribute' => 'full_name',
+                    'label' => 'Họ tên'
+                ],
+                [
+                    'attribute' => 'phone_number',
+                    'label' => 'Số điện thoại'
+                ],
+                [
+                    'attribute' => 'email',
+                    'label' => 'Email',
+                    'format' => 'email'
+                ],
+                [
                     'attribute' => 'project.title',
                     'label' => 'Dự án'
                 ],
@@ -38,25 +51,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'Nguồn khách hàng'
                 ],
                 [
-                    'attribute' => 'full_name',
-                    'label' => 'Họ tên'
-                ],
-                [
-                    'attribute' => 'phone_number',
-                    'label' => 'Số điện thoại'
-                ],
-                [
-                    'attribute' => 'email',
-                    'label' => 'Số điện thoại',
-                    'format' => 'email'
-                ],
-                [
                     'attribute' => 'delivery_date',
                     'label' => 'Ngày giao khách',
                     'format' => 'date'
                 ],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template' => '{update} {delete}',
 
-                ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}'],
+                ],
             ],
         ]); ?>
         <?php Pjax::end(); ?>
