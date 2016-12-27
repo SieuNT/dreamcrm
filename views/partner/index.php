@@ -25,15 +25,31 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-
-                'full_name',
-                'phone_number',
-                'email:email',
-                'project.title',
-
-                'start_date:date',
-                'end_date:date',
-
+                [
+                    'attribute' => 'full_name',
+                    'label' => 'Họ tên'
+                ],
+                [
+                    'attribute' => 'phone_number',
+                    'label' => 'Số điện thoại'
+                ],
+                [
+                    'attribute' => 'email',
+                    'label' => 'Email',
+                    'format' => 'email'
+                ],
+                [
+                    'attribute' => 'project.title',
+                    'label' => 'Dự án'
+                ],
+                [
+                    'class' => 'yii\grid\DataColumn',
+                    'attribute' => 'start_date:date',
+                    'label' => 'Hợp đồng',
+                    'value' => function($model) {
+                        return Yii::$app->formatter->asDate($model->start_date) . ' đến ' . Yii::$app->formatter->asDate($model->end_date);
+                    }
+                ],
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'buttons' => [

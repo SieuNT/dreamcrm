@@ -83,7 +83,7 @@ class CustomerController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $model->delivery_date = Yii::$app->formatter->asDate($model->delivery_date);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {

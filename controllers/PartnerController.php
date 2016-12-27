@@ -85,7 +85,8 @@ class PartnerController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $model->start_date = Yii::$app->formatter->asDate($model->start_date);
+        $model->end_date = Yii::$app->formatter->asDate($model->end_date);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
