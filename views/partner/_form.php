@@ -1,6 +1,8 @@
 <?php
 
+use app\models\User;
 use kartik\daterange\DateRangePicker;
+use kartik\money\MaskMoney;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use app\models\Project;
@@ -26,29 +28,44 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
     <div class="form-group">
         <label for="contract_date">Thời hạn hợp đồng</label>
-    <div class="input-group drp-container">
-        <?php
-        echo DateRangePicker::widget([
-            'model' => $model,
-            'attribute' => 'contract_date',
-            'useWithAddon' => true,
-            'convertFormat' => true,
-            'startAttribute' => 'start_date',
-            'endAttribute' => 'end_date',
-            'pluginOptions' => [
-                'opens' => 'right',
-                'locale' => [
-                    'format' => 'd-m-Y'
-                ],
-            ]
-        ]);
+        <div class="input-group drp-container">
+            <?php
+            echo DateRangePicker::widget([
+                'model' => $model,
+                'attribute' => 'contract_date',
+                'useWithAddon' => true,
+                'convertFormat' => true,
+                'startAttribute' => 'start_date',
+                'endAttribute' => 'end_date',
+                'pluginOptions' => [
+                    'opens' => 'right',
+                    'locale' => [
+                        'format' => 'd-m-Y'
+                    ],
+                ]
+            ]);
 
-        ?>
-        <span class="input-group-addon">
+            ?>
+            <span class="input-group-addon">
             <i class="glyphicon glyphicon-calendar"></i>
         </span>
+        </div>
     </div>
-    </div>
+    <?= $form->field($model, 'contract_value')->widget(MaskMoney::className(), [
+        'pluginOptions' => [
+            'suffix' => 'đ',
+            'allowNegative' => false
+        ]
+    ]) ?>
+    <?= $form->field($model, 'real_value')->widget(MaskMoney::className(), [
+        'pluginOptions' => [
+            'suffix' => 'đ',
+            'allowNegative' => false
+        ]
+    ]) ?>
+    <?= $form->field($model, 'project_id')->dropDownList(
+        ArrayHelper::map(User::find()->all(), 'id', 'full_name'),
+        ['prompt' => '---Chọn nhân viên---'])->label('Nhân Viên') ?>
     <?= $form->field($model, 'notes')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">

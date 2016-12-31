@@ -53,11 +53,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'buttons' => [
-                        'assign-user' => function ($url, $model, $key) {
+                        'user' => function ($url, $model, $key) {
                             return Html::a('<i class="fa fa-user-o" aria-hidden="true"></i>', [$url]);
                         },
                     ],
-                    'template' => '{assign-user} {update} {delete}'
+                    'template' => '{user} {update} {delete}'
                 ],
             ],
         ]); ?>

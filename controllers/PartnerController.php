@@ -140,6 +140,10 @@ class PartnerController extends Controller
         }
     }
 
+    public function actionUser($id) {
+
+    }
+
     /**
      * Finds the Partner model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

@@ -20,6 +20,8 @@ class m161221_130619_partners extends Migration
             'email' => $this->string()->notNull(),
             'start_date' => $this->date()->notNull(),
             'end_date' => $this->date()->notNull(),
+            'contract_value' => $this->money(8,2),
+            'real_value' => $this->money(8,2),
 
             'notes' => $this->getDb()->getSchema()->createColumnSchemaBuilder('longtext')->comment('Ghi chú'),
 
