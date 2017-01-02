@@ -92,9 +92,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUserPartners()
+    public function getPartners()
     {
-        return $this->hasMany(UserPartner::className(), ['user_id' => 'id']);
+        return $this->hasMany(Partner::className(), ['user_id' => 'id']);
     }
 
     /**

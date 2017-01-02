@@ -42,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'project.title',
                     'label' => 'Dự án'
                 ],
+                'user.full_name',
                 [
                     'class' => 'yii\grid\DataColumn',
                     'attribute' => 'start_date:date',
@@ -52,12 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'class' => 'yii\grid\ActionColumn',
-                    'buttons' => [
-                        'user' => function ($url, $model, $key) {
-                            return Html::a('<i class="fa fa-user-o" aria-hidden="true"></i>', [$url]);
-                        },
-                    ],
-                    'template' => '{user} {update} {delete}'
+                    'template' => '{update} {delete}'
                 ],
             ],
         ]); ?>

@@ -15,6 +15,7 @@ class m161221_130619_partners extends Migration
         $this->createTable('{{%partner}}', [
             'id' => $this->primaryKey(),
             'project_id' => $this->integer(),
+            'user_id' => $this->integer(),
             'full_name' => $this->string()->notNull(),
             'phone_number' => $this->string()->notNull(),
             'email' => $this->string()->notNull(),
@@ -33,6 +34,7 @@ class m161221_130619_partners extends Migration
         ], $tableOptions);
 
         $this->addForeignKey('fk_partner_project', '{{%partner}}', 'project_id', '{{%project}}', 'id');
+        $this->addForeignKey('fk_partner_user', '{{%partner}}', 'user_id', '{{%user}}', 'id');
     }
 
     public function down()

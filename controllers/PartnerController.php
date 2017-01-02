@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\User;
 use app\models\UserPartner;
 use Yii;
 use app\models\Partner;
@@ -38,7 +39,6 @@ class PartnerController extends Controller
     {
         $searchModel = new PartnerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

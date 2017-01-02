@@ -63,9 +63,10 @@ use yii\widgets\ActiveForm;
             'allowNegative' => false
         ]
     ]) ?>
-    <?= $form->field($model, 'project_id')->dropDownList(
+    <?= $form->field($model, 'user_id')->dropDownList(
         ArrayHelper::map(User::find()->all(), 'id', 'full_name'),
-        ['prompt' => '---Chọn nhân viên---'])->label('Nhân Viên') ?>
+        ['prompt' => '---Chọn nhân viên---'])->label('Nhân viên') ?>
+
     <?= $form->field($model, 'notes')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">

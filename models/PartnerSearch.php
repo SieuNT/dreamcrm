@@ -18,7 +18,7 @@ class PartnerSearch extends Partner
     public function rules()
     {
         return [
-            [['id', 'project_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'project_id', 'user_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['full_name', 'phone_number', 'email', 'start_date', 'end_date', 'notes'], 'safe'],
         ];
     }
@@ -61,6 +61,7 @@ class PartnerSearch extends Partner
         $query->andFilterWhere([
             'id' => $this->id,
             'project_id' => $this->project_id,
+            'user_id' => $this->user_id,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'status' => $this->status,
