@@ -1,5 +1,6 @@
 <?php
 
+use app\models\User;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -27,7 +28,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'attribute' => 'phone_number',
-                    'label' => 'Số điện thoại'
+                    'label' => 'Số điện thoại',
+                    'value' => function($model) {
+
+                        $role = Yii::$app->user->identity->role;
+                        if($role !== User::ROLE_ADMIN) {
+                            $userID = Yii::$app->user->identity->id;
+                            $employeeID = $model->partner->user->id;
+                            if($employeeID === $userID) {
+                                return $model->phone_number;
+                            }
+                        }
+                    }
                 ],
                 [
                     'attribute' => 'email',
@@ -43,6 +55,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'Đối tác'
                 ],
                 [
+                    'attribute' => 'partner.user.full_name',
+                    'label' => 'Nhân viên'
+                ],
+                [
                     'attribute' => 'customerResource.name',
                     'label' => 'Nguồn khách hàng'
                 ],
@@ -50,12 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'delivery_date',
                     'label' => 'Ngày giao khách',
                     'format' => 'date'
-                ],
-//                [
-//                    'class' => 'yii\grid\ActionColumn',
-//                    'template' => '{update} {delete}',
-//
-//                ],
+                ]
             ],
         ]); ?>
         <?php Pjax::end(); ?>

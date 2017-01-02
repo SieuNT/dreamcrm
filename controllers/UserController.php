@@ -2,10 +2,12 @@
 
 namespace app\controllers;
 
+use app\common\AccessRule;
 use app\models\SignupForm;
 use Yii;
 use app\models\User;
 use app\models\UserSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,6 +23,30 @@ class UserController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['index', 'view', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                            User::ROLE_USER,
+                        ],
+                    ],
+                    [
+                        'actions' => ['create','update','delete'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                        ],
+                    ]
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
