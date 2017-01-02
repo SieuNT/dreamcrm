@@ -1,5 +1,6 @@
 <?php
 
+use app\models\User;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -14,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="box box-success customer-index">
     <div class="box-body">
         <h1><?= Html::encode($this->title) ?></h1>
-        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+        <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
         <p>
             <?= Html::a(Yii::t('app', 'Create Customer'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -31,7 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'attribute' => 'phone_number',
-                    'label' => 'Số điện thoại'
+                    'label' => 'Số điện thoại',
+                    'value' => function($model) {
+
+                        $role = Yii::$app->user->identity->role;
+                        if($role !== User::ROLE_ADMIN) {
+                            $userID = Yii::$app->user->identity->id;
+                            $employeeID = $model->partner->user->id;
+                            if($employeeID === $userID) {
+                                return $model->phone_number;
+                            }
+                        }
+                    }
                 ],
                 [
                     'attribute' => 'email',
@@ -45,6 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'partner.full_name',
                     'label' => 'Đối tác'
+                ],
+                [
+                    'attribute' => 'partner.user.full_name',
+                    'label' => 'Nhân viên'
                 ],
                 [
                     'attribute' => 'customerResource.name',

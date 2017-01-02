@@ -60,6 +60,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'real_value')->widget(MaskMoney::className(), [
         'pluginOptions' => [
             'suffix' => 'đ',
+            'precision' => 0,
             'allowNegative' => false
         ]
     ]) ?>
