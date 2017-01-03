@@ -33,15 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'phone_number',
                     'label' => 'Số điện thoại',
-                    'value' => function($model) {
+                    'value' => function ($model) {
 
                         $role = Yii::$app->user->identity->role;
-                        if($role !== User::ROLE_ADMIN) {
+                        if ($role !== User::ROLE_ADMIN) {
                             $userID = Yii::$app->user->identity->id;
                             $employeeID = $model->partner->user->id;
-                            if($employeeID === $userID) {
+                            if ($employeeID === $userID) {
                                 return $model->phone_number;
                             }
+                            return false;
+                        } else {
+                            return $model->phone_number;
                         }
                     }
                 ],
@@ -74,7 +77,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'template' => '{update} {delete}',
-
+                    'visibleButtons' => [
+                        'update' => function($model, $key, $index) {
+                            return Yii::$app->user->identity->role === \app\models\User::ROLE_ADMIN;
+                        },
+                        'delete' => function($model, $key, $index) {
+                            return Yii::$app->user->identity->role === \app\models\User::ROLE_ADMIN;
+                        }
+                    ]
                 ],
             ],
         ]); ?>

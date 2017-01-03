@@ -53,7 +53,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'class' => 'yii\grid\ActionColumn',
-                    'template' => '{update} {delete}'
+                    'template' => '{update} {delete}',
+                    'visibleButtons' => [
+                        'update' => function($model, $key, $index) {
+                            return Yii::$app->user->identity->role === \app\models\User::ROLE_ADMIN;
+                        },
+                        'delete' => function($model, $key, $index) {
+                            return Yii::$app->user->identity->role === \app\models\User::ROLE_ADMIN;
+                        }
+                    ]
                 ],
             ],
         ]); ?>

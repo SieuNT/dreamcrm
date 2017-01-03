@@ -54,16 +54,17 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'contract_value')->widget(MaskMoney::className(), [
         'pluginOptions' => [
             'suffix' => 'đ',
+            'precision' => 0,
             'allowNegative' => false
         ]
-    ]) ?>
+    ])->label('Giá trị hợp đồng') ?>
     <?= $form->field($model, 'real_value')->widget(MaskMoney::className(), [
         'pluginOptions' => [
             'suffix' => 'đ',
             'precision' => 0,
             'allowNegative' => false
         ]
-    ]) ?>
+    ])->label('Thực thu (Hợp đồng)') ?>
     <?= $form->field($model, 'user_id')->dropDownList(
         ArrayHelper::map(User::find()->all(), 'id', 'full_name'),
         ['prompt' => '---Chọn nhân viên---'])->label('Nhân viên') ?>

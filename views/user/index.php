@@ -30,7 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'full_name',
                 'phone_number',
 
-                ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}'],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template' => '{update} {delete}',
+                    'visibleButtons' => [
+                        'update' => function ($model, $key, $index) {
+                            return Yii::$app->user->identity->role === \app\models\User::ROLE_ADMIN;
+                        },
+                        'delete' => function ($model, $key, $index) {
+                            return Yii::$app->user->identity->role === \app\models\User::ROLE_ADMIN;
+                        }
+                    ]
+                ],
             ],
         ]); ?>
         <?php Pjax::end(); ?>
