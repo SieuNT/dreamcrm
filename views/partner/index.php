@@ -42,7 +42,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'project.title',
                     'label' => 'Dự án'
                 ],
-                'user.full_name',
+				[
+                    'attribute' => 'user.full_name',
+                    'label' => 'Nhân viên'
+                ],
                 [
                     'class' => 'yii\grid\DataColumn',
                     'attribute' => 'start_date:date',
