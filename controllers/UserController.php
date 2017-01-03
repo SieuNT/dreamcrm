@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\common\AccessRule;
+use app\models\ChangePassword;
 use app\models\SignupForm;
 use Yii;
 use app\models\User;
@@ -28,10 +29,10 @@ class UserController extends Controller
                 'ruleConfig' => [
                     'class' => AccessRule::className(),
                 ],
-                'only' => ['index', 'view', 'create', 'update', 'delete'],
+                'only' => ['index', 'view', 'create', 'update', 'delete', 'me'],
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index', 'me'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -92,10 +93,8 @@ class UserController extends Controller
     {
         $model = new SignupForm();
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->signup()) {
-                return $this->goHome();
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -136,7 +135,17 @@ class UserController extends Controller
     }
 
     public function actionMe() {
-        return $this->render('me');
+        $id = Yii::$app->user->getId();
+        $user = $this->findModel($id);
+        $model = new ChangePassword();
+        if($model->load(Yii::$app->request->post()) && $model->changePassword()) {
+            Yii::$app->user->logout();
+            return $this->goHome();
+        }
+        return $this->render('me', [
+            'user' => $user,
+            'model' => $model
+        ]);
     }
 
     /**

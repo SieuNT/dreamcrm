@@ -56,7 +56,11 @@ class PartnerSearch extends Partner
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        $role = Yii::$app->user->identity->role;
+        if($role !== User::ROLE_ADMIN) {
+            $id = Yii::$app->user->identity->getId();
+            $query->andFilterWhere(['user_id' => $id]);
+        }
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,

@@ -90,7 +90,11 @@ class SignupForm extends Model
         $user->role = isset($this->role) ? $this->role : User::ROLE_USER;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-
+        if($user->save()) {
+            return $user;
+        } else {
+            print_r($user->errors);exit();
+        }
         return $user->save() ? $user : null;
     }
 }
