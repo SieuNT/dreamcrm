@@ -34,9 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         $role = Yii::$app->user->identity->role;
                         if($role !== User::ROLE_ADMIN) {
                             $userID = Yii::$app->user->identity->id;
-                            $employeeID = $model->partner->user->id;
+                            $employeeID = isset($model->partner->user->id) ? $model->partner->user->id : null;
                             if($employeeID === $userID) {
-                                return $model->phone_number;
+                                return isset($model->phone_number) ? $model->phone_number : null;
                             }
                         }
                     }
