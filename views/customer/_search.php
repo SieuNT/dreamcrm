@@ -1,8 +1,10 @@
 <?php
 
 use app\models\CustomerResource;
+use app\models\CustomerType;
 use app\models\Partner;
 use app\models\Project;
+use kartik\daterange\DateRangePicker;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -47,6 +49,18 @@ use yii\widgets\ActiveForm;
         <div class="col-xs-4"><?= $form->field($model, 'full_name') ?></div>
         <div class="col-xs-4"><?php echo $form->field($model, 'phone_number') ?></div>
         <div class="col-xs-4"><?php echo $form->field($model, 'email') ?></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <?= $form->field($model, 'customer_type_id')->dropDownList(
+                ArrayHelper::map(CustomerType::find()->all(), 'id', 'title'),
+                ['prompt' => '---Chọn loại khách hàng---'])->label('Phân loại khách hàng') ?>
+        </div>
+        <div class="col-xs-4">
+
+        </div>
+        <div class="col-xs-4">
+        </div>
     </div>
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use app\models\CustomerResource;
+use app\models\CustomerType;
 use app\models\Partner;
 use app\models\Project;
 use kartik\daterange\DateRangePicker;
@@ -37,12 +38,38 @@ use yii\widgets\ActiveForm;
         ArrayHelper::map(CustomerResource::find()->all(), 'id', 'name'),
         ['prompt' => '---Chọn nguồn khách hàng---'])->label('Nguồn khách hàng') ?>
 
+    <?= $form->field($model, 'customer_type_id')->dropDownList(
+        ArrayHelper::map(CustomerType::find()->all(), 'id', 'title'),
+        ['prompt' => '---Chọn loại khách hàng---'])->label('Phân loại khách hàng') ?>
+
     <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
+    <div class="form-group">
+        <label for="contract_date">Ngày nhận khách</label>
+        <div class="input-group drp-container">
+            <?= DateRangePicker::widget([
+                'model' => $model,
+                'attribute' => 'received_date',
+                'useWithAddon' => true,
+                'convertFormat' => true,
+                'pluginOptions' => [
+                    'opens' => 'right',
+                    'timePicker' => false,
+                    'locale' => ['format' => 'd-m-Y'],
+                    'singleDatePicker' => true,
+                    'showDropdowns' => true,
+                    'readonly' => true
+                ],
+            ]) ?>
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-calendar"></i>
+            </span>
+        </div>
+    </div>
     <div class="form-group">
         <label for="contract_date">Ngày giao khách</label>
         <div class="input-group drp-container">

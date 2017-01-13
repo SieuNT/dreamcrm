@@ -18,8 +18,8 @@ class CustomerSearch extends Customer
     public function rules()
     {
         return [
-            [['id', 'project_id', 'partner_id', 'customer_resource_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
-            [['full_name', 'phone_number', 'email', 'delivery_date'], 'safe'],
+            [['id', 'project_id', 'partner_id', 'customer_resource_id', 'customer_type_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['full_name', 'phone_number', 'email', 'delivery_date', 'received_date'], 'safe'],
         ];
     }
 
@@ -64,14 +64,16 @@ class CustomerSearch extends Customer
             // $query->where('0=1');
             return $dataProvider;
         }
-
+//print_r(Yii::$app->formatter->asDate($this->received_date, 'php:Y-m-d'));exit();
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'project_id' => $this->project_id,
             'partner_id' => $this->partner_id,
             'customer_resource_id' => $this->customer_resource_id,
+            'customer_type_id' => $this->customer_type_id,
             'delivery_date' => $this->delivery_date,
+            'received_date' => $this->received_date,
             'status' => $this->status,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,

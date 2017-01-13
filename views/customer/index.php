@@ -67,6 +67,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'Nguồn khách hàng'
                 ],
                 [
+                    'attribute' => 'customerType.title',
+                    'label' => 'Phân loại khách hàng'
+                ],
+                [
+                    'attribute' => 'received_date',
+                    'label' => 'Ngày nhận khách',
+                    'format' => 'date'
+                ],
+                [
                     'attribute' => 'delivery_date',
                     'label' => 'Ngày giao khách',
                     'format' => 'date'
